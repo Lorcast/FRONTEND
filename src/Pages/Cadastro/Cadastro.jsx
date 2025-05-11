@@ -17,6 +17,7 @@ export default function Cadastro() {
     } catch (error) {
       // Mostrando um erro detalhado, caso seja fornecido pelo backend
       setMsg(`Erro no cadastro: ${error.response?.data?.message || 'Tente novamente.'}`);
+      
     }
   };
 
