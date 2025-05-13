@@ -14,16 +14,17 @@ export default function Login({ onLogin }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await api.post('/Login', { email, senha });
+      const res = await api.post('/login', { email, password: senha });
       setToken(res.data.token);
       onLogin();
-    } catch {
+      navigate('/dashboard');
+    } catch (err) {
       setMsg('Credenciais inválidas.');
     }
   };
 
   const irParaCadastro = () => {
-    navigate('/Cadastro'); // 👈 Altere para a rota correta se necessário
+    navigate('/Cadastro');
   };
 
   return (
