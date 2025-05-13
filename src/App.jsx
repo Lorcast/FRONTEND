@@ -7,20 +7,27 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import Login from './Pages/Login/Login.jsx';
 import Cadastro from './Pages/Cadastro/Cadastro.jsx';
 import Dashboard from './Pages/Dashboard.jsx';
+import { getToken } from './auth.jsx';
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(!!getToken());
 
+  useEffect(() => {
+    setIsLoggedIn(!!getToken());
+  }, []);
+
+  const handleLogin = () => setIsLoggedIn(true);
+  const handleLogout = () => setIsLoggedIn(false);
 
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Login onLogin={() => console.log("logado")} />} />
+        <Route path="/" element={isLoggedIn ? <Navigate to="/dashboard" /> : <Navigate to="/login" />} />
+        <Route path="/login" element={<Login onLogin={handleLogin} />} />
         <Route path="/cadastro" element={<Cadastro/>} />
-        <Route path="/dashboard" element={<Dashboard/>} />
-
+        <Route path="/dashboard" element={isLoggedIn ? <Dashboard onLogout={handleLogout} /> : <Navigate to="/login" />} />
       </Routes>
     </Router>
-   
   );
 }
 
