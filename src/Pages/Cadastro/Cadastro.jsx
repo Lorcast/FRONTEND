@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../../api';
+import './Cadastro.css';
 
 export default function Cadastro() {
   const [email, setEmail] = useState('');
@@ -11,12 +12,13 @@ export default function Cadastro() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Verifique o endpoint correto do seu backend
+      
       await api.post('/register', { email, password });
       setMsg('Usuário cadastrado com sucesso!');
     } catch (error) {
-      // Mostrando um erro detalhado, caso seja fornecido pelo backend
+      
       setMsg(`Erro no cadastro: ${error.response?.data?.message || 'Tente novamente.'}`);
+      
     }
   };
 

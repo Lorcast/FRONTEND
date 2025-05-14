@@ -6,7 +6,7 @@ import './App.css'
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Login from './Pages/Login/Login.jsx';
 import Cadastro from './Pages/Cadastro/Cadastro.jsx';
-import Dashboard from './Pages/Dashboard.jsx';
+import Dashboard from './Pages/Dashboard/Dashboard.jsx';
 import { getToken } from './auth.jsx';
 
 function App() {
