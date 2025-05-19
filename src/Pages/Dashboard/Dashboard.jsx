@@ -15,7 +15,20 @@ export default function Dashboard({ onLogout }) {
   return (
     <div className='dashboard-container'>
       <h2>Dashboard</h2>
-      {dados ? <pre>{JSON.stringify(dados, null, 2)}</pre> : <p>Carregando...</p>}
+
+      {dados ? (
+        dados.length > 0 ? (
+          <ul className='user-list'>
+            {dados.map((usuario, index) => (
+              <li key={index}>{usuario.email}</li>
+            ))}
+          </ul>
+        ) : (
+          <p>Nenhum usuário encontrado.</p>
+        )
+      ) : (
+        <p>Carregando...</p>
+      )}
       <button onClick={() => { removeToken(); onLogout(); }}>Logout</button>
     </div>
   );
